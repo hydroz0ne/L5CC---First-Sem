@@ -28,12 +28,12 @@ class ArithmeticOperations:
 #Function to handle calculations
 def Calculate():
     try:
-        num1 = float(labelnum1.get())
+        num1 = float(enternum1.get())
         num2 = float(enternum2.get())
-        operation = operationvar.get()
+        operation_str = operationvar.get()
 
-        #Call the calculate method of the ArithmeticOperations class
-        operation.calculate(num1, num2, operation)
+        # Call the calculate method of the ArithmeticOperations class
+        operation.calculate(num1, num2, operation_str)
         result.config(text="The result is " + str(operation.result) + ".")
     except ValueError:
         result.config(text="Please enter valid numbers.")

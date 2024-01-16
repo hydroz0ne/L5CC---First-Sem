@@ -25,12 +25,18 @@ class Animal:
         return details
 
     #Method to display the noise the animal makes
+    def saysHello(self):
+        return f"'{self.name}' says hello!"
+
+    #Method to display the noise the animal makes
     def makeNoise(self):
         return f"'{self.name}' makes the noise '{self.noise}'!"
 
+    #Method to display example information about default animals
     def animalexample(self):
-        #Example method to display information about default animals
-        return f"Example 1:\n{self(dog).animalDetails()}\n\nExample 2:\n{self(cow).animalDetails()}"
+        dog = Animal("Dog", "Bomber", "Brown", "3", "10 kg", "Woof!")
+        cow = Animal("Bird", "Rio", "Blue", "2", "0.31 kg", "Chirp!")
+        return f"Example 1:\n{dog.animalDetails()}\n\nExample 2:\n{cow.animalDetails()}"
 
 #Function to create a new animal and update labels
 def newanimal():
@@ -41,12 +47,13 @@ def newanimal():
     weight = enterweight.get()
     noise = enternoise.get()
 
-    newanimal = Animal(type, name, colour, age, weight, noise)
-    animals.append(newanimal)
+    new_animal = Animal(type, name, colour, age, weight, noise)
+    animals.append(new_animal)
 
-    hellomsg.set(newanimal.sayHello())
-    outputmsg.set(newanimal.animalDetails())
-    noisemsg.set(newanimal.makeNoise())
+    hellomsg.set(new_animal.sayHello())
+    outputmsg.set(new_animal.animalDetails())
+    hellomsg.set(new_animal.saysHello())
+    noisemsg.set(new_animal.makeNoise())
 
     examplelabel.config(text="")
     root.update_idletasks()
@@ -85,7 +92,7 @@ enternoise.grid(row=6, column=1)
 outputbutton = Button(root, text="Create Animal", command=newanimal)
 outputbutton.grid(row=7, column=0, columnspan=2, pady=30)
 
-examplelabel = Label(root, text=Animal.animalexample(), justify=LEFT)
+examplelabel = Label(root, text=dog.animalexample(), justify=LEFT)
 examplelabel.grid(row=8, column=0, columnspan=2)
 
 hellomsg = StringVar()
@@ -96,9 +103,13 @@ outputmsg = StringVar()
 outputlabel = Label(root, textvariable=outputmsg, justify=LEFT)
 outputlabel.grid(row=10, column=0, columnspan=2)
 
+hellomsg = StringVar()
+hellolabel = Label(root, textvariable=hellomsg, justify=LEFT)
+hellolabel.grid(row=11, column=0, columnspan=2)
+
 noisemsg = StringVar()
 noiselabel = Label(root, textvariable=noisemsg, justify=LEFT)
-noiselabel.grid(row=11, column=0, columnspan=2)
+noiselabel.grid(row=12, column=0, columnspan=2)
 
 #Configures grid columns for proper layout
 for i in range(2):

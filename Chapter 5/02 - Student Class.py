@@ -5,7 +5,6 @@ root.geometry("350x400")
 root.resizable(False, False)
 root.title("Average Grade")
 
-#Defines the Students class
 class Students:
     def __init__(self, name, mark1, mark2, mark3):
         self.name = name
@@ -14,42 +13,53 @@ class Students:
         self.mark3 = mark3
 
     def calcGrade(self):
-        #Calculate the average grade
         average = (self.mark1 + self.mark2 + self.mark3) / 3
         return average
 
     def info(self):
-        #Return a string with student information and average grade
         return f"Student Name: {self.name} \nAverage Grade: {self.calcGrade():.2f}"
 
 header = Label(root, text="Grade Info", font="comicsans 13 bold", pady=10)
 header.pack()
-subheader = Label(root, text="Here are your details below:")
-subheader.pack()
 
-#Input from the user for student 1
-name1 = input("Enter student 1 name: ")
-student1mark1 = int(input(f"Enter {name1}'s mark 1: "))
-student1mark2 = int(input(f"Enter {name1}'s mark 2: "))
-student1mark3 = int(input(f"Enter {name1}'s mark 3: "))
-student1 = Students(name1, student1mark1, student1mark2, student1mark3)
+#Input fields for student
+name1_label = Label(root, text="Enter the student's name:")
+name1_label.pack()
+name1_entry = Entry(root)
+name1_entry.pack()
 
-#Input from the user for student 2
-name2 = input("\nEnter student 2 name: ")
-student2mark1 = int(input(f"Enter {name2}'s mark 1: "))
-student2mark2 = int(input(f"Enter {name2}'s mark 2: "))
-student2mark3 = int(input(f"Enter {name2}'s mark 3: "))
-student2 = Students(name2, student2mark1, student2mark2, student2mark3)
-print("Please check the window for the input.")
+mark1_label = Label(root, text="Enter mark 1:")
+mark1_label.pack()
+mark1_entry = Entry(root)
+mark1_entry.pack()
 
-#Function to display student information
-def displaystudentinfo(student):
+mark2_label = Label(root, text="Enter mark 2:")
+mark2_label.pack()
+mark2_entry = Entry(root)
+mark2_entry.pack()
+
+mark3_label = Label(root, text="Enter mark 3:")
+mark3_label.pack()
+mark3_entry = Entry(root)
+mark3_entry.pack()
+
+#Function to calculate and display student information
+def display_student_info():
+    name = name1_entry.get()
+    mark1 = int(mark1_entry.get())
+    mark2 = int(mark2_entry.get())
+    mark3 = int(mark3_entry.get())
+    
+    student = Students(name, mark1, mark2, mark3)
+    
     name_and_grade = student.info()
-    studentinfo = Label(root, text=name_and_grade)
-    studentinfo.pack()
+    student_info = Label(root, text=name_and_grade)
+    subheader = Label(root, text="Here are the details below:")
+    subheader.pack()
+    student_info.pack()
 
-#Display information for both students
-displaystudentinfo(student1)
-displaystudentinfo(student2)
+#Button to start calculation and display information
+calculate_button = Button(root, text="Calculate", command=display_student_info)
+calculate_button.pack(pady=10)
 
 root.mainloop()
