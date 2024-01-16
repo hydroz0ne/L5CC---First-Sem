@@ -1,7 +1,7 @@
 #Exercise 4 - Line Graph 
 import matplotlib.pyplot as plt
-
 plt.title('Solid & Dotted Line')
+
 #Draw a line in a diagram from position (1, 2) to position (6, 8)
 solid_x = [1, 6]
 solid_y = [2, 8]
